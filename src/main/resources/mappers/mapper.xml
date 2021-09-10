@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="crud.crudProject.dao.EmpDao">
+	
+	<select id="empList" resultType="Emp">
+		SELECT empno, 
+			   ename,
+			   job,
+			   mgr,
+			   hiredate,
+			   sal
+		FROM EMP
+	</select>
+	
+	<select id="detail" resultType="Emp" parameterType="int">
+		SELECT EMPNO,
+			   ENAME,
+			   JOB,
+			   MGR,
+			   HIREDATE,
+			   SAL,
+			   COMM,
+			   DEPTNO
+		FROM EMP
+		WHERE EMPNO = #{EMPNO}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM EMP WHERE EMPNO = #{EMPNO}
+	</delete>
+	
+	<update id="update" parameterType="crud.crudProject.model.Emp">
+		update emp set empno = #{empno},
+               ename = #{ename},
+               job   = #{job},
+               sal   = #{sal},
+               hiredate = #{hiredate},
+               comm  = #{comm},
+               mgr   = #{mgr},
+               deptno= #{deptno}
+               where empno = #{empno}	
+	</update>
+</mapper>
